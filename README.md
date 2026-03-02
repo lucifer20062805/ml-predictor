@@ -91,14 +91,20 @@ The dashboard will open at **http://localhost:8501**.
 
 ## Deployment — Streamlit Community Cloud
 
-1. Push the repository to GitHub (make sure all files are committed).
+1. Push the repository to GitHub. Note that `commercial_fraud_dataset.csv` and `Base.csv` are intentionally ignored by `.gitignore` to prevent memory limit errors on Streamlit Cloud. The trained `model.pkl` is sufficient.
 2. Go to [share.streamlit.io](https://share.streamlit.io) and log in.
 3. Click **New app** → select your repo and set:
    - **Branch**: `main`
    - **Main file path**: `app.py`
-4. Click **Deploy**.
+4. **Important: Configure Gemini API Key**
+   - Click **Advanced Settings** before deploying.
+   - In the **Secrets** field, add your Gemini API Key like this:
+     ```toml
+     GEMINI_API_KEY = "your_actual_api_key_here"
+     ```
+5. Click **Deploy**.
 
-> No additional secrets or configuration required.
+> The app will securely load the key via Streamlit's `st.secrets` manager.
 
 ---
 
